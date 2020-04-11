@@ -1,25 +1,21 @@
 import express from 'express'
 import { Exercise } from '../models/exercise.model';
 
-const router = express.Router();
+const exercisesRouter = express.Router();
 
-router.route('/').get((req, res) => {
+exercisesRouter.route('/').get((req, res) => {
     Exercise.find()
         .then(exercises => res.json(exercises))
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
 
-router.route('/add').post((req, res) => {
-    const username = req.body.username;
+exercisesRouter.route('/add').post((req, res) => {
     const description = req.body.description;
     const duration = Number(req.body.duration);
-    const date = Date.parse(req.body.date);
 
     const newExercise = new Exercise ({
-        username,
         description,
         duration,
-        date
     });
 
     newExercise.save()
@@ -27,25 +23,23 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
 
-router.route('/:id').get((req, res) => {
+exercisesRouter.route('/:id').get((req, res) => {
     Exercise.findById(req.params.id)
         .then(exercises => res.json(exercises))
         .catch(err => res.status(400).json(`Error: ${err}`));
 })
 
-router.route('/:id').delete((req, res) => {
+exercisesRouter.route('/:id').delete((req, res) => {
     Exercise.findByIdAndDelete(req.params.id)
         .then(() => res.json('Exercise deleted.'))
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
 
-router.route('/update/:id').post((req, res) => {
+exercisesRouter.route('/update/:id').post((req, res) => {
     Exercise.findById(req.params.id)
         .then((exercises: any) => {
-            exercises.username = req.body.username;
             exercises.description = req.body.description;
             exercises.duration = Number(req.body.duration);
-            exercises.date = Date.parse(req.body.date);
 
             exercises.save()
                 .then(() => res.json('Exercise updated!'))
@@ -53,4 +47,4 @@ router.route('/update/:id').post((req, res) => {
         })
         .catch(err => res.status(400).json(`Error: ${err}`));
 })
-export default router
+export default exercisesRouter
