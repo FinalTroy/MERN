@@ -1,21 +1,21 @@
 import express from 'express'
-import { User } from '../models/user.model';
+import { Trainer } from '../models/user.model';
 
-const router = express.Router();
+const userRoutes = express.Router();
 
-router.route('/').get((req, res) => {
-    User.find()
+userRoutes.route('/').get((req, res) => {
+    Trainer.find()
         .then(users => res.json(users))
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
 
-router.route('/add').post((req, res) => {
+userRoutes.route('/add').post((req, res) => {
     const username = req.body.username;
-    const newUser = new User({username});
+    const newUser = new Trainer({username});
 
     newUser.save()
-        .then(() => res.json('User added!'))
+        .then(() => res.json('Trainer added!'))
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
 
-export default router
+export default userRoutes
