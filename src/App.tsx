@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Navbar from './components/navbar.component'
-import ExercisesList from './components/exercises-list.component'
-import EditExercise from './components/edit-exercises.component'
-import CreateExercise from './components/create-exercise.component'
-import CreateTrainer from './components/create-trainer.component'
+import ExercisesList from './components/Pages/Exercises-list'
+import EditExercise from './components/Pages/Edit-exercises'
+import CreateExercise from './components/Pages/Create-exercise'
+import CreateTrainer from './components/Pages/Create-trainer'
 
-function App() {
+const App = () => {
   return (
     <Router>
       <div className='container'>
