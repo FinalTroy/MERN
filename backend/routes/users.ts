@@ -1,5 +1,5 @@
 import express from 'express'
-import { Trainer } from '../models/user.model';
+import Trainer from '../models/user.model';
 
 const userRoutes = express.Router();
 

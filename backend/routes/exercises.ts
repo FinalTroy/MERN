@@ -1,5 +1,5 @@
 import express from 'express'
-import { Exercise } from '../models/exercise.model';
+import Exercise from '../models/exercise.model';
 
 const exercisesRouter = express.Router();
 
