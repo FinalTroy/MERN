@@ -1,12 +1,12 @@
-import mongoose from "mongoose";
-const Schema = mongoose.Schema;
+import mongoose, {Schema} from "mongoose";
+import { IExercises } from "../types/types"
 
 const exerciseSchema = new Schema({
-    description : {
-        type: String, 
+    description: {
+        type: String,
         required: true
     },
-    duration : {
+    duration: {
         type: Number,
         required: true
     }
@@ -14,4 +14,4 @@ const exerciseSchema = new Schema({
     timestamps: true
 });
 
-export const Exercise = mongoose.model('Exercise', exerciseSchema);
+export default mongoose.model<IExercises>('Exercise', exerciseSchema);
