@@ -9,7 +9,7 @@ interface IPropsExercise {
     }
     deleteExercise(exercise: number): void
 }
-const Exercise = (props: IPropsExercise) =>
+const ExerciseList = (props: IPropsExercise) =>
     <tr>
         <td>{props.exercise.description}</td>
         <td>{props.exercise.duration}</td>
@@ -18,4 +18,4 @@ const Exercise = (props: IPropsExercise) =>
         </td>
     </tr>
 
-export default Exercise;
+export default ExerciseList;

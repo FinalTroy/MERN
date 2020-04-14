@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import axios from 'axios';
-import Exercise from './List/Lists';
+import ExerciseList from './Lists/ExerciseList';
 
 const ExercisesList: FunctionComponent<{}> = () => {
     const [exercises, setExercises] = useState<any[]>([])
@@ -22,7 +22,7 @@ const ExercisesList: FunctionComponent<{}> = () => {
 
     const exerciseList = () => {
         return exercises.map(exercise => {
-            return <Exercise exercise={exercise} deleteExercise={deleteExercise} key={exercise._id} />
+            return <ExerciseList exercise={exercise} deleteExercise={deleteExercise} key={exercise._id} />
         })
     }
 

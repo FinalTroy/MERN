@@ -12,12 +12,10 @@ exercisesRouter.route('/').get((req, res) => {
 exercisesRouter.route('/add').post((req, res) => {
     const description = req.body.description;
     const duration = Number(req.body.duration);
-
     const newExercise = new Exercise ({
         description,
         duration,
     });
-
     newExercise.save()
         .then(() => res.json('Exercise added!'))
         .catch(err => res.status(400).json(`Error: ${err}`));

@@ -10,9 +10,8 @@ userRoutes.route('/').get((req, res) => {
 });
 
 userRoutes.route('/add').post((req, res) => {
-    const username = req.body.username;
-    const newUser = new Trainer({username});
-
+    const trainer = req.body.trainer;
+    const newUser = new Trainer({trainer});
     newUser.save()
         .then(() => res.json('Trainer added!'))
         .catch(err => res.status(400).json(`Error: ${err}`));
