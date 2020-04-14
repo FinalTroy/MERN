@@ -1,6 +1,5 @@
-import mongoose from "mongoose";
-
-const Schema = mongoose.Schema;
+import mongoose, {Schema} from "mongoose";
+import { IUsers } from "../types/types";
 
 const trainerSchema = new Schema({
     username: {
@@ -14,4 +13,4 @@ const trainerSchema = new Schema({
     timestamps: true
 });
 
-export const Trainer = mongoose.model('Trainer', trainerSchema);
+export default mongoose.model<IUsers>('Trainer', trainerSchema);
