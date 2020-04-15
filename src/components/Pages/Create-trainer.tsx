@@ -23,9 +23,18 @@ const CreateTrainer: FunctionComponent<{}> = () => {
             .catch(err => console.log(err))
         setTrainer('')
     }
+    const deleteExercise = (id: string) => {
+        console.log(id)
+        axios.delete(`http://localhost:5000/users/${id}`)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+
+        setTrainerList(trainerList.filter(tl => tl._id !== id))
+    }
     const trainerListRend = () => {
         return trainerList.map(trainer => {
-            return <TrainerList trainer={trainer.trainer} key={trainer._id} />
+            console.log(trainer._id)
+            return <TrainerList trainer={trainer} deleteExercise={deleteExercise} key={trainer._id} />
         })
     }
     return (
@@ -47,7 +56,7 @@ const CreateTrainer: FunctionComponent<{}> = () => {
                     </div>
                 </form>
             </div>
-            <div>
+            <div style={{textAlign:'center'}}>
                 <h3>List of trainers</h3>
                 <table className="table">
                     <thead className="thead-light">

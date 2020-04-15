@@ -16,5 +16,15 @@ userRoutes.route('/add').post((req, res) => {
         .then(() => res.json('Trainer added!'))
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
+userRoutes.route('/:id').get((req, res) => {
+    Trainer.findById(req.params.id)
+        .then(exercises => res.json(exercises))
+        .catch(err => res.status(400).json(`Error: ${err}`));
+})
+userRoutes.route('/:id').delete((req, res) => {
+    Trainer.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Trainer deleted.'))
+        .catch(err => res.status(400).json(`Error: ${err}`));
+});
 
 export default userRoutes

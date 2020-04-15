@@ -1,18 +1,21 @@
 // import { Link } from 'react-router-dom';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface IProps {
+    trainer:{
         trainer: string;
-        key: number;
-    
-    // deleteExercise(props: number): void
+        _id: string
+    }
+    deleteExercise(id: string): void
 }
-const TrainerList = (props: IProps) =>
+const TrainerList = (props: IProps) =>{
+    return(
     <tr>
-        <td>{props.trainer}</td>
-        {/* <td>
-            <Link to={"/edit/" + props.exercise._id}>edit</Link> | <Link to="#top" onClick={() => { props.deleteExercise(props.exercise._id) }}>delete</Link>
-        </td> */}
-    </tr>
-
+        <td className="col-1">{props.trainer.trainer}</td>
+        <td className="col-1">
+            <Link to="#top" onClick={() => { props.deleteExercise(props.trainer._id) }}>delete</Link>
+        </td>
+    </tr>)
+}
 export default TrainerList;
