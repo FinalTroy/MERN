@@ -1,8 +1,8 @@
 import mongoose, {Schema} from "mongoose";
-import { IUsers } from "../types/types";
+import { ITrainer } from "../types/types";
 
 const trainerSchema = new Schema({
-    username: {
+    trainer: {
         type: String,
         required: true,
         unique: true,
@@ -13,4 +13,4 @@ const trainerSchema = new Schema({
     timestamps: true
 });
 
-export default mongoose.model<IUsers>('Trainer', trainerSchema);
+export default mongoose.model<ITrainer>('Trainer', trainerSchema);

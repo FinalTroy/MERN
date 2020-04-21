@@ -5,6 +5,6 @@ export interface IExercises extends Document {
     duration: number
 }
 
-export interface IUsers extends Document {
-    username: string
+export interface ITrainer extends Document {
+    trainer: string
 }

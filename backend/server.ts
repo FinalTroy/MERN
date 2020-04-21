@@ -14,8 +14,8 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 mongoose.Promise = bluebird
-// const uri = process.env.ATLAS_URI;
-mongoose.connect('mongodb+srv://Troy:182Metrix182@cluster0-ytqcy.gcp.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+const uri = process.env.ATLAS_URI;
+mongoose.connect(`${uri}`, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log('MongoDB database connection established successfully');

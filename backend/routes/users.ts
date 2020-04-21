@@ -10,11 +10,20 @@ userRoutes.route('/').get((req, res) => {
 });
 
 userRoutes.route('/add').post((req, res) => {
-    const username = req.body.username;
-    const newUser = new Trainer({username});
-
+    const trainer = req.body.trainer;
+    const newUser = new Trainer({trainer});
     newUser.save()
         .then(() => res.json('Trainer added!'))
+        .catch(err => res.status(400).json(`Error: ${err}`));
+});
+userRoutes.route('/:id').get((req, res) => {
+    Trainer.findById(req.params.id)
+        .then(exercises => res.json(exercises))
+        .catch(err => res.status(400).json(`Error: ${err}`));
+})
+userRoutes.route('/:id').delete((req, res) => {
+    Trainer.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Trainer deleted.'))
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
 
