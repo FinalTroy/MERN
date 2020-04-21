@@ -24,7 +24,6 @@ const CreateTrainer: FunctionComponent<{}> = () => {
         setTrainer('')
     }
     const deleteExercise = (id: string) => {
-        console.log(id)
         axios.delete(`http://localhost:5000/users/${id}`)
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
@@ -33,7 +32,6 @@ const CreateTrainer: FunctionComponent<{}> = () => {
     }
     const trainerListRend = () => {
         return trainerList.map(trainer => {
-            console.log(trainer._id)
             return <TrainerList trainer={trainer} deleteExercise={deleteExercise} key={trainer._id} />
         })
     }
