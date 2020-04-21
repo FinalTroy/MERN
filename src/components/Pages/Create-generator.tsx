@@ -1,62 +1,61 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent, useState, useEffect } from "react"
+import axios from 'axios';
 import moment from "moment"
 
 interface IProps {
-    trainerList: any[];
     exercises: any[];
 }
 const Generator: FunctionComponent<IProps> = (props: IProps) => {
+
+    const [trainerList, setTrainerList] = useState<any[]>([])  
+    useEffect(() => {
+        axios.get('http://localhost:5000/users/')
+          .then(res => {
+            setTrainerList(res.data)
+          })
+          .catch(err => console.log(err))
+      },[])
     moment.updateLocale('cs', {
         weekdays: [
             "Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota"
         ]
     });
-    const getDaysArrayByMonth = (i: number) => {
-        const arrDays = [];
-        const addDaysName = [];
-    arrDays.push(<td>{i + 1}.{moment().month()}</td>);
-        addDaysName.push(<td>{moment().dates(i + 1).format('dddd')}</td>)
-        return { arrDays, addDaysName };
-    }
+    
     const renderRow = () => {
         const list = []
         for (let i = 0; i < moment().daysInMonth(); i++) {
-            const sloup = <tr>
-                <td className="col-md-auto">{getDaysArrayByMonth(i).arrDays}</td>
-                <td className="col-md-auto">{getDaysArrayByMonth(i).addDaysName}</td>
+            list.push( <tr key={i.toString()}>
+                <td className="col-md-auto">{i + 1}.{moment().month()}</td>
+                <td className="col-md-auto">{moment().date(i + 1).format('dddd')}</td>
                 <td className="col-md-auto">
-                    <select className="col-md-auto form-control">{props.trainerList.map(trainer => {
-                        return <option value={trainer._id}>{trainer.trainer}</option>
+                    <select className="col-md-auto form-control">{trainerList.map(trainer => {
+                        return <option value={trainer._id} key={trainer._id}>{trainer.trainer}</option>
                     })}</select>
                 </td>
                 <td className="col-md-auto">
-                    <select className="col-md-auto form-control">{props.trainerList.map(trainer => {
-                        return <option value={trainer._id}>{trainer.trainer}</option>
-                    })}</select>
-                </td>
-                <td className="col-md-auto">
-                    <select className="col-md-auto form-control">{props.exercises.map(exercise => {
-                        return <option value={exercise._id}>{exercise.description}</option>
+                    <select className="col-md-auto form-control">{trainerList.map(trainer => {
+                        return <option value={trainer._id} key={trainer._id}>{trainer.trainer}</option>
                     })}</select>
                 </td>
                 <td className="col-md-auto">
                     <select className="col-md-auto form-control">{props.exercises.map(exercise => {
-                        return <option value={exercise._id}>{exercise.description}</option>
+                        return <option value={exercise._id} key={exercise._id}>{exercise.description}</option>
                     })}</select>
                 </td>
-            </tr>
-            list.push(sloup)
+                <td className="col-md-auto">
+                    <select className="col-md-auto form-control">{props.exercises.map(exercise => {
+                        return <option value={exercise._id} key={exercise._id}>{exercise.description}</option>
+                    })}</select>
+                </td>
+            </tr>)
         }
         return list
     }
-    const printForm = () => {
-        window.print()
-    }
-    return (
+        return (
         <div className="form-group">
-            <h3>Logged Exercises</h3>
+            <h3 className="text-center">Rozpis sluzeb</h3>
             <table className="table">
-                <thead className="thead-light">
+                <thead className="thead-dark">
                     <tr>
                         <th>Datum</th>
                         <th>Den</th>
@@ -70,7 +69,7 @@ const Generator: FunctionComponent<IProps> = (props: IProps) => {
                     {renderRow()}
                 </tbody>
             </table>
-            <button onClick={printForm}>TISK</button>
+            <button className="btn btn-primary btn-lg float-right" onClick={() => window.print()}>TISK</button>
         </div>
     )
 }
