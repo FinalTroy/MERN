@@ -2,7 +2,10 @@ import React, { ChangeEvent, FunctionComponent, useState, useEffect } from 'reac
 import axios from 'axios';
 import TrainerList from './Lists/TrainerList';
 
-const CreateTrainer: FunctionComponent<{}> = () => {
+interface IProps {
+    trainerList: any[]
+}
+const CreateTrainer: FunctionComponent<IProps> = (props: IProps) => {
 
     const [trainer, setTrainer] = useState<string>('')
     const [trainerList, setTrainerList] = useState<any[]>([])
