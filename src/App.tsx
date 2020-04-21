@@ -7,6 +7,7 @@ import ExercisesList from './components/Pages/Exercises-list'
 import EditExercise from './components/Pages/Edit-exercises'
 import CreateExercise from './components/Pages/Create-exercise'
 import CreateTrainer from './components/Pages/Create-trainer'
+import Generator from './components/Pages/Create-generator';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/edit/:id' exact component={EditExercise} />
         <Route path='/create' exact component={CreateExercise} />
         <Route path='/user' exact component={CreateTrainer} />
+        <Route path='/generator' exact component={Generator} />
       </div>
     </Router>
 
