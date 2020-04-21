@@ -11,7 +11,6 @@ import CreateTrainer from './components/Pages/Create-trainer'
 import Generator from './components/Pages/Create-generator';
 
 const App = () => {
-  const [trainerList, setTrainerList] = useState<any[]>([])
   const [exercises, setExercises] = useState<any[]>([])
 
   useEffect(() => {
@@ -21,35 +20,23 @@ const App = () => {
           })
           .catch(err => console.log(err))
   }, [])
-  useEffect(() => {
-    axios.get('http://localhost:5000/users/')
-      .then(res => {
-        setTrainerList(res.data)
-      })
-      .catch(err => console.log(err))
-  })
   return (
     <Router>
       <div className='container'>
         <Navbar />
-        <br />
         <Route exact path='/'>
           <ExercisesList />
         </Route>
-        <Route exact path='/edit/:id'>
-          <EditExercise match/>
+        <Route exact path='/edit/:id' component={EditExercise}>
         </Route>
         <Route exact path='/create'>
           <CreateExercise />
         </Route>
         <Route exact path='/user'>
-          <CreateTrainer 
-            trainerList={trainerList}
-          />
+          <CreateTrainer />
         </Route>
         <Route exact path='/generator'>
           <Generator 
-            trainerList={trainerList}
             exercises={exercises}
           />
         </Route>

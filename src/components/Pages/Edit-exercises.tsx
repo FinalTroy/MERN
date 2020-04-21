@@ -9,6 +9,7 @@ const EditExercise: FunctionComponent<IProps> = (props: IProps) => {
     const [description, setDescription] = useState<string>('')
     const [duration, setDuration] = useState<number>(0)
     useEffect(() => {
+        console.log(props.match.params.id)
         axios.get(`http://localhost:5000/exercises/${props.match.params.id}`)
             .then(res => {
                 setDescription(res.data.description)
