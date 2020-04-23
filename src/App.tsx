@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './style.css'
 
 import Navbar from './components/navbar.component'
 import ExercisesList from './components/Pages/Exercises-list'
