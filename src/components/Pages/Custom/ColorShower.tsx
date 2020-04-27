@@ -8,7 +8,7 @@ const ColorShower: FC<IProps> = (props: IProps) => {
     return (
         <div className="colorShower" style={{ 
             backgroundColor: `rgb(${props.color.first},${props.color.second},${props.color.third})` 
-        }}></div>
+        }} />
     )
 }
 export default ColorShower

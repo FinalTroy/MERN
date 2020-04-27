@@ -26,6 +26,12 @@
     border-radius: 25%;
 }
 
+/* Trainer List */
+
+.trainer-list {
+  margin-bottom: 0.25rem;
+}
+
 /* Style input[type=range] */
 input[type=range] {
     -webkit-appearance: none;

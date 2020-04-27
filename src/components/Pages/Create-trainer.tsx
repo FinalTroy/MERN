@@ -13,8 +13,8 @@ export interface IColor {
 const CreateTrainer: FunctionComponent<IProps> = (props: IProps) => {
 
     const [trainer, setTrainer] = useState<string>('')
-    const [trainerList, setTrainerList] = useState<any[]>([])    
-    const [color, setColor] = useState<IColor>({first: '1', second: '1', third: '1'})
+    const [trainerList, setTrainerList] = useState<any[]>([])
+    const [color, setColor] = useState<IColor>({ first: '1', second: '1', third: '1' })
 
     useEffect(() => {
         axios.get('http://localhost:5000/users/')
@@ -29,10 +29,11 @@ const CreateTrainer: FunctionComponent<IProps> = (props: IProps) => {
     }
     const onSubmit = (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/users/add', { trainer: trainer })
+        axios.post('http://localhost:5000/users/add', { trainer: trainer, color: color })
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
         setTrainer('')
+        setColor({ first: '0', second: '0', third: '0'})
     }
 
     const deleteTrainer = (id: string) => {
@@ -48,13 +49,13 @@ const CreateTrainer: FunctionComponent<IProps> = (props: IProps) => {
                 <h3>Create New Trainer</h3>
                 <form className="form-group formTrainer" onSubmit={onSubmit}>
                     <div className="d-inline-flex">
-                            <label>Username: </label>
-                            <input type="text"
-                                required
-                                className="form-control col-md-4 userName"
-                                value={trainer}
-                                onChange={onChangeUsername}
-                            />
+                        <label>Username: </label>
+                        <input type="text"
+                            required
+                            className="form-control col-md-4 userName"
+                            value={trainer}
+                            onChange={onChangeUsername}
+                        />
                         <ColorPicker color={color} setColor={setColor} />
                     </div>
                     <div className="form-group">
@@ -62,18 +63,9 @@ const CreateTrainer: FunctionComponent<IProps> = (props: IProps) => {
                     </div>
                 </form>
             </div>
-            <div style={{ textAlign: 'center' }}>
+            <div className="row justify-content-center">
                 <h3>List of trainers</h3>
-                <table className="table">
-                    <thead className="thead-light">
-                        <tr>
-                            <th>Trainer</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {trainerList.map(trainer => <TrainerList color={color} trainer={trainer} deleteTrainer={deleteTrainer} key={trainer._id} />)}
-                    </tbody>
-                </table>
+                {trainerList.map(trainer => <TrainerList trainer={trainer} deleteTrainer={deleteTrainer} key={trainer._id} />)}
             </div>
         </div>
     )

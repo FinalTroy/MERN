@@ -7,19 +7,19 @@ import { IColor } from '../Create-trainer';
 interface IProps {
     trainer: {
         trainer: string;
+        color: IColor;
         _id: string
     }
-    color: IColor;
     deleteTrainer(id: string): void
 }
 const TrainerList = (props: IProps) => {
     return (
-        <tr className="row justify-content-center">
-            <td className="col-md-auto">{props.trainer.trainer}</td>
-            <ColorShower color={props.color} />
-            <td className="col-md-auto">
+        <div className="row justify-content-center container-sm trainer-list">
+            <div className="col-md-auto">{props.trainer.trainer}</div>
+            <ColorShower color={props.trainer.color} />
+            <div className="col-md-auto">
                 <Link to="#top" onClick={() => { props.deleteTrainer(props.trainer._id) }}>delete</Link>
-            </td>
-        </tr>)
+            </div>
+        </div>)
 }
 export default TrainerList;
