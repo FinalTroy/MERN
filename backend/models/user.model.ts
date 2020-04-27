@@ -1,4 +1,4 @@
-import mongoose, {Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { ITrainer } from "../types/types";
 
 const trainerSchema = new Schema({
@@ -9,6 +9,20 @@ const trainerSchema = new Schema({
         trim: true,
         minLength: 3
     },
+    color: {
+        first: {
+            type: String,
+            required: true,
+        },
+        second: {
+            type: String,
+            required: true,
+        },
+        third: {
+            type: String,
+            required: true,
+        }
+    }
 }, {
     timestamps: true
 });

@@ -11,7 +11,11 @@ userRoutes.route('/').get((req, res) => {
 
 userRoutes.route('/add').post((req, res) => {
     const trainer = req.body.trainer;
-    const newUser = new Trainer({trainer});
+    const color = req.body.color
+    const newUser = new Trainer({
+        trainer,
+        color
+    });
     newUser.save()
         .then(() => res.json('Trainer added!'))
         .catch(err => res.status(400).json(`Error: ${err}`));
