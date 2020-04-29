@@ -48,7 +48,8 @@ const CreateTrainer: FunctionComponent<IProps> = (props: IProps) => {
             <div>
                 <h3>Create New Trainer</h3>
                 <form className="form-group formTrainer" onSubmit={onSubmit}>
-                    <div className="d-inline-flex">
+                    <div className="justify-content-center">
+                        <div className="row justify-content-center">
                         <label>Username: </label>
                         <input type="text"
                             required
@@ -56,10 +57,11 @@ const CreateTrainer: FunctionComponent<IProps> = (props: IProps) => {
                             value={trainer}
                             onChange={onChangeUsername}
                         />
+                        </div>
                         <ColorPicker color={color} setColor={setColor} />
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Create Trainer" className="btn btn-primary" />
+                        <input type="submit" value="Create Trainer" className="btn btn-dark float-right" />
                     </div>
                 </form>
             </div>
